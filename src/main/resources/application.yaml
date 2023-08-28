@@ -1,0 +1,53 @@
+cnbs-serpro:
+  url: 'https://cnbs.estaleiro.serpro.gov.br/cnbs-api'
+  url-item-por-palavra: '${cnbs-serpro.url}/item/v1/hint?palavra='
+  url-material: '${cnbs-serpro.url}/material/v1'
+  url-servico: '${cnbs-serpro.url}/servico/v1'
+  url-material-por-codigo: '${cnbs-serpro.url-material}/recuperaDadosItemMaterialPorCodigo?codigo_item_material='
+  url-material-por-palavra: '${cnbs-serpro.url-material}/palavra?palavra='
+  url-material-caracteristica-valor-por-pdm: '${cnbs-serpro.url-material}/materialCaracteristcaValorporPDM?codigo_pdm='
+  url-caracteristicas-por-pdm: '${cnbs-serpro.url-material}/caracteristicaPorCodigoPdm?codigo_pdm='
+  url-material-classificacao-contabil-por-pdm: '${cnbs-serpro.url-material}/classificacaoContabilPorCodigoPdm?codigo_pdm='
+  url-servico-por-codigo: '${cnbs-serpro.url-servico}/dadosServicoPorCodigo?codigo_servico='
+  url-servico-por-palavra: '${cnbs-serpro.url-servico}/palavra?palavra='
+  url-servico-classificacao-contabil-por-codigo: '${cnbs-serpro.url-servico}/classificacaoContabilPorCodigo?codigo_servico='
+
+## SERVER
+server:
+  servlet:
+    context-path: /api
+  error:
+    include-stacktrace: never
+  port: 8080
+
+## SPRING BOOT
+spring:
+  main:
+    allow-circular-references: false
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: cnbs-serpro-client
+  jackson:
+    time-zone: America/Sao_Paulo
+    locale: pt_BR
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+  gson:
+    serialize-nulls: false
+
+## LOG
+logging:
+  file:
+    name: logs/cnbs-serpro-client.log
+    path: logs
+  level:
+    root: info
+    web: info
+    br.com: info
+  charset:
+    file: utf-8
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+      max-file-size: 10MB
